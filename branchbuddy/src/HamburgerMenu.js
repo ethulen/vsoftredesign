@@ -47,7 +47,7 @@ function HamburgerMenu() {
             <a href="/branchlist">Branch List</a>
             <a href="/branch">Branch</a>
             <a href="/branchgroups">Branch Groups</a>
-            <a href="branchgroupsorters">Branch Group Sorters</a>
+            <a href="/branchgroupsorters">Branch Group Sorters</a>
             <a href="/blockrangedefinition">Block Range Definition</a>
             <a href="/jobcutoffdefinition">Job Cutoff Definition</a>
             <a href="/eclconsolidation">ECL Consolidation</a>
@@ -98,6 +98,132 @@ function HamburgerMenu() {
             <a href="/sortpatternselectors">Sort Pattern Selectors</a>
             <a href="/sortpatterntables">Sort Pattern Tables</a>
             <a href="/micrconversion">MICR Conversion</a>
+          </div>
+        </div>
+        <a href="#" onClick={handleMenuClick}>
+          Operations
+        </a>
+        <div className="submenu">
+          <a href="#" onClick={handleMenuClick}>
+            Capture
+          </a>
+          <div className="submenu">
+            <a href="/amountentry">Amount Entry</a>
+            <a href="/cashletterrequest">Cash Letter Request</a>
+            <a href="/rejectrepair">Reject Repair</a>
+            <a href="/balancing">Balancing</a>
+          </div>
+          <a href="#" onClick={handleMenuClick}>
+            ATM
+          </a>
+          <div className="submenu">
+            <a href="/transactionreview">Transaction Review</a>
+            <a href="/adviceprinting">Advice Printing</a>
+            <a href="/exceptions">Exceptions</a>
+            <a href="/atmuserunlock">ATM User Unlock</a>
+          </div>   
+        </div>
+        <a href="#" onClick={handleMenuClick}>
+          Supervisor
+        </a>
+        <div className="submenu">
+          <a href="#" onClick={handleMenuClick}>
+            Capture
+          </a>
+          <div className="submenu">
+            <a href="/startofday">Start Of Day</a>
+            <a href="/datadeletion">Data Deletion</a>
+            <a href="/databasemaintenance">Database Maintenance</a>
+          </div>
+          <a href="#" onClick={handleMenuClick}>
+            Digital Dashboard
+          </a>
+          <div className="submenu">
+            <a href="/inwardecls">Inward ECLs</a>
+            <a href="/atm">ATM</a>
+            <a href="/cashlettercontrol">Cash Letter Control</a>
+            <a href="/dashboardsl">Dashboard SL</a>
+          </div>
+          <a href="#" onClick={handleMenuClick}>
+            Status
+          </a>
+          <div className="submenu">
+            <a href="/jobstatus">Job Status</a>
+            <a href="/blockstatus">Block Status</a>
+            <a href="/batchstatus">Batch Status</a>
+            <a href="/workstatus">Work Status</a>
+          </div>
+          <a href="#" onClick={handleMenuClick}>
+            ATM
+          </a>
+          <div className="submenu">
+            <a href="/atmreview">ATM Review</a>
+            <a href="/eclreview">ECL Review</a>
+          </div>   
+        </div>
+        <a href="#" onClick={handleMenuClick}>
+          Reports
+        </a>
+        <div className="submenu">
+          <a href="#" onClick={handleMenuClick}>
+            Security Reports
+          </a>
+          <div className="submenu">
+            <a href="/userprofilesreport">User Profiles Report</a>
+            <a href="/audituserchange">Audit User Change</a>
+            <a href="/successfullogins">Successful Logins</a>
+            <a href="/roleprivileges">Role Privileges</a>
+            <a href="/unsuccessfullogins">Unsuccessful Logins</a>
+            <a href="/roleaudit">Role Audit</a>
+            <a href="/researchrestrictaudit">Research Restrict Audit</a>
+            <a href="/institutionaudit">Institution Audit</a>
+            <a href="/useracctretraudit">User Acct Retr Audit</a>
+            <a href="/institutiongroupaudit">Institution Group Audit</a>
+            <a href="/rolesacctrestraudit">Roles Acct Restr Audit</a>
+          </div>
+          <a href="#" onClick={handleMenuClick}>
+            Capture
+          </a>
+          <div className="submenu">
+            <a href="/blocktotal">Block Total</a>
+            <a href="/consolidatedapptotal">Consolidated App Total</a>
+            <a href="/x937report">X937 Report</a>
+            <a href="/mastersbyjob">Masters by Job</a>
+            <a href="/clrecapendpoint">C L Recap (Endpoint)</a>
+            <a href="/clrecapjob">C L Recap (Job)</a>
+          </div>
+          <a href="#" onClick={handleMenuClick}>
+            Research
+          </a>
+          <div className="submenu">
+            <a href="/researchitemaudit">Research Item Audit</a>
+            <a href="/dailyitemtotal">Daily Item Total</a>
+            <a href="/bundlesummary">Bundle Summary</a>
+            <a href="/applicationtools">Application Tools</a>
+          </div>
+          <a href="#" onClick={handleMenuClick}>
+            ATM Report
+          </a>
+          <div className="submenu">
+            <a href="/atmreport">ATM Report</a>
+            <a href="/onuscheckdetail">ONUS Check Detail</a>
+            <a href="/checkitemdetail">Check Item Detail</a>
+            <a href="/adjustmentdetail">Adjustment Detail</a>
+            <a href="/itemdetail">Item Detail</a>
+            <a href="/operatorstatistics">Operator Statistics</a>
+            <a href="/eod">End of Day</a>
+          </div>   
+        </div>
+        <a href="#" onClick={handleMenuClick}>
+          Research
+        </a>
+        <div className="submenu">
+          <a href="#" onClick={handleMenuClick}>
+            Check Archive
+          </a>
+          <div className="submenu">
+            <a href="/capture">Capture</a>
+            <a href="/checkarchive">Check Archive</a>
           </div>
         </div>
       </div>
