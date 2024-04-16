@@ -8,14 +8,12 @@ function Header() {
         BranchBuddy
       </a>
       <div className="header-right">
-        <a className="active" href="#home">
+        <a href="#home">
           Home
         </a>
-        <a href="/admin">Admin</a>
-        <a href="/operations">Operations</a>
-        <a href="/supervisor">Supervisor</a>
-        <a href="/reports">Reports</a>
-        <a href="/research">Research</a>
+        <a href="#home">
+          Login
+        </a>
       </div>
     </div>
   );
