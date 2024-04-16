@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ATM_Virtual_Docs() {
+function ATMVirtualDocs() {
   // State for selected institution, group/branch, and ATM
   const [selectedInstitution, setSelectedInstitution] = useState("");
   const [selectedGroupBranch, setSelectedGroupBranch] = useState("");
@@ -81,4 +81,4 @@ function ATM_Virtual_Docs() {
   );
 }
 
-export default ATM_Virtual_Docs;
+export default ATMVirtualDocs;

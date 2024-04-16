@@ -7,8 +7,9 @@ import {
   Routes,
 } from "react-router-dom";
 import Definition from "./Administrator/ATM/Definition";
-import ATM_Virtual_Docs from "./Administrator/ATM/ATM_Virtual_Docs";
-import Review_Threshold from "./Administrator/ATM/Review_Threshold";
+import ATMVirtualDocs from "./Administrator/ATM/ATMVirtualDocs";
+import ReviewThreshold from "./Administrator/ATM/ReviewThreshold";
+import NewATMForm from "./Administrator/ATM/NewATMForm";
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
           <Header />
           <HamburgerMenu />
           <Routes>
-            <Route path="/definition" component={Definition} />
-            <Route path="/reviewthreshold" component={Review_Threshold} />
-            <Route path="/atmvirtualdocs" component={ATM_Virtual_Docs} />
+            <Route path="/definition" element={<Definition />} />
+            <Route path="/reviewthreshold" element={<ReviewThreshold/>} />
+            <Route path="/atmvirtualdocs" element={<ATMVirtualDocs/>} />
+            <Route path="/add" element={<NewATMForm/>} />
             {/* Add routes for other components */}
           </Routes>
         </BrowserRouter>

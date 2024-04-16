@@ -1,0 +1,123 @@
+/* Styles for the container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Styles for the Select components */
+.select-container {
+  display: flex; /* Use Flexbox layout */
+  justify-content: space-between; /* Distribute space between the elements */
+}
+
+/* Styles for the table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  padding-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Styles for table header */
+.table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Styles for table rows */
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Styles for table cells */
+.table td {
+  text-align: left;
+}
+
+.addButton {
+  background-color: #1087f7; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 15px 32px; /* Padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make it a block element */
+  font-size: 16px; /* Set font size */
+  margin: 4px 2px; /* Add some margin */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  border-radius: 12px; /* Rounded corners */
+}
+
+.form-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container select,
+.form-container input[type="time"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.form-container input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.form-container button[type="save"] {
+  background-color: #1087f7;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-container button[type="save"]:hover {
+  background-color: #0000ff;
+}
+
+.form-container button[type="cancel"] {
+  background-color: #dad5d5;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #c2c6ca;
+}
+
+.submit-containter{
+  display: flex; /* Use Flexbox layout */
+}
