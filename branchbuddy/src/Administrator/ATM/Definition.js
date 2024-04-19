@@ -183,7 +183,7 @@ function Definition() {
         </tbody>
       </table>
 
-      <Link to="/add">
+      <Link to="/addATM">
         <button className="addButton">Add ATM</button>
       </Link>
     </div>

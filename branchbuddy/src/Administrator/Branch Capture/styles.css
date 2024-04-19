@@ -1,0 +1,227 @@
+.block-range-definition {
+  margin-top: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-bottom: 50px;
+}
+
+.block-range-definition form {
+  width: 50%; /* Adjust the width as needed */
+}
+
+.block-range-definition .form-group {
+  margin-bottom: 15px;
+}
+
+.block-range-definition label {
+  display: block;
+  font-weight: bold;
+}
+
+.block-range-definition input[type="text"],
+.block-range-definition select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.block-range-definition select {
+  cursor: pointer;
+}
+
+.block-range-definition input[type="checkbox"] {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form-group {
+  width: 45%; /* Adjust the width as needed */
+  margin: 10px;
+}
+
+.form-group label {
+  display: block;
+}
+
+/* Optional: Adjust input styles */
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.button-row {
+  display: flex;
+  margin-top: 20px;
+}
+
+.button-row button {
+  flex: 1;
+  margin: 0 5px; /* Adjust margin as needed */
+}
+
+.container {
+  justify-content: left; /* Center the container horizontally */
+  align-items: left; /* Center the container vertically */
+}
+
+.form-container {
+  width: 100%; /* Set the width to one-third of the viewport width */
+}
+
+.branch-form-group {
+  width: 100%; /* Adjust the width as needed */
+  margin: 10px;
+}
+.title-header {
+  width: 100%; /* Adjust the width as needed */
+  margin: 10px;
+  text-align: center; /* Center the text horizontally */
+}
+
+.select-container {
+  /* Style for the container of select inputs */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.branch-form-group {
+  /* Style for each form group */
+  margin-bottom: 15px; /* Adjust margin as needed */
+}
+
+.form-group {
+  /* Style for each form group */
+  margin-bottom: 15px; /* Adjust margin as needed */
+}
+
+.multiselect-container {
+  /* Style for the container of the MultiselectComponent */
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.button-row {
+  /* Style for the button row */
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-button {
+  /* Style for the Add button */
+  background-color: green; /* Change as needed */
+  color: white; /* Change as needed */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  /* Style for the Cancel button */
+  background-color: red; /* Change as needed */
+  color: white; /* Change as needed */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.branch-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.form-container {
+  width: 50%;
+  margin-top: 20px;
+}
+
+.title-header {
+  text-align: center;
+}
+
+.select-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.branch-form-group {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Style for react-select components */
+.react-select-container {
+  width: 48%;
+}
+
+/* Style for react-select control */
+.react-select__control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style for react-select menu */
+.react-select__menu {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style for react-select options */
+.react-select__option {
+  padding: 8px 12px;
+}
+
+/* Style for react-select option when hovered */
+.react-select__option:hover {
+  background-color: #f4f4f4;
+}
+
+/* Style for react-select option when selected */
+.react-select__option--is-selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.multiselect-container {
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: space-between; /* Spread items horizontally */
+  margin-top: 20px; /* Adjust margin as needed */
+  flex-direction: column;
+  margin-bottom: 20px; /* Adjust margin as needed */
+}

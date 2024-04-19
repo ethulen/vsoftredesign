@@ -100,7 +100,7 @@ code {
   text-decoration: none;
 }
 .nav-links a:hover {
-  background-color: #cdc;
+  background-color: rgb(148, 190, 226);
 }
 
 .submenu{

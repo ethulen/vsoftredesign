@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "./styles.css";
+import { Link } from "react-router-dom";
 
 function ReviewThreshold() {
   // State for selected bank
@@ -41,8 +43,8 @@ function ReviewThreshold() {
   }, [selectedBank]);
 
   return (
-    <div>
-      <h1>ATM Documents</h1>
+    <div style={{ padding: "20px" }}>
+      <h1>Review Threshold</h1>
       {/* Dropdown to choose a bank */}
       <div>
         <label htmlFor="bankSelect">Choose a bank:</label>
@@ -78,6 +80,9 @@ function ReviewThreshold() {
           ))}
         </tbody>
       </table>
+      <Link to="/addReviewThreshold">
+        <button className="addButton">Add</button>
+      </Link>
     </div>
   );
 }
