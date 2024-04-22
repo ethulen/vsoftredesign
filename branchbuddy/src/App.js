@@ -17,6 +17,15 @@ import BranchList from "./Administrator/Branch Capture/BranchList.js";
 import ConsolidationSchedules from "./Administrator/Branch Capture/ConsolidationSchedules.js";
 import ECLConsolidation from "./Administrator/Branch Capture/ECLConsolidation.js";
 import JobCutoffDefinition from "./Administrator/Branch Capture/JobCutoffDefinition.js";
+import AdjustmentConfig from "./Administrator/Capture/AdjustmentConfig.js";
+import ApplicationCodes from "./Administrator/Capture/ApplicationCodes.js";
+import CashLetterGroup from "./Administrator/Capture/CashLetterGroup.js";
+import DupItemsConfig from "./Administrator/Capture/DupItemsConfig.js";
+import ECLProfiles from "./Administrator/Capture/ECLProfiles.js";
+import Endpoint from "./Administrator/Capture/Endpoint.js";
+import EndpointGroups from "./Administrator/Capture/EndpointGroups.js";
+import VirtualMaster from "./Administrator/Capture/VirtualMaster.js";
+import WorkTypes from "./Administrator/Capture/WorkTypes.js";
 
 function App() {
   return (
@@ -47,14 +56,20 @@ function App() {
             path="/consolidationSchedules"
             element={<ConsolidationSchedules />}
           />
-          <Route
-            path="/eclConsolidation"
-            element={<ECLConsolidation />}
-          />
+          <Route path="/eclConsolidation" element={<ECLConsolidation />} />
           <Route
             path="/jobcutoffdefinition"
             element={<JobCutoffDefinition />}
           />
+          <Route path="/adjustmentConfig" element={<AdjustmentConfig />} />
+          <Route path="/applicationCodes" element={<ApplicationCodes />} />
+          <Route path="/cashlettergroup" element={<CashLetterGroup/>}/>
+          <Route path="/dupitemsconfig" element={<DupItemsConfig/>}/>
+          <Route path="/eclprofiles" element={<ECLProfiles/>}/>
+          <Route path="/endpoint" element={<Endpoint/>}/>
+          <Route path="/endpointgroups" element={<EndpointGroups/>}/>
+          <Route path="/virtualmaster" element={<VirtualMaster/>}/>
+          <Route path="/worktypes" element={<WorkTypes/>}/>
           {/* Add routes for other components */}
         </Routes>
       </BrowserRouter>
