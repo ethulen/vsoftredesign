@@ -26,6 +26,12 @@ import Endpoint from "./Administrator/Capture/Endpoint.js";
 import EndpointGroups from "./Administrator/Capture/EndpointGroups.js";
 import VirtualMaster from "./Administrator/Capture/VirtualMaster.js";
 import WorkTypes from "./Administrator/Capture/WorkTypes.js";
+import ECLInbox from "./Administrator/Configuration/ECLInbox.js";
+import EDeskConfiguration from "./Administrator/Configuration/EDeskConfiguration.js";
+import ImagePaths from "./Administrator/Configuration/ImagePaths.js";
+import Printers from "./Administrator/Configuration/Printers.js";
+import Site from "./Administrator/Configuration/Site.js";
+import SystemParameters from "./Administrator/Configuration/SystemParameters.js";
 
 function App() {
   return (
@@ -63,13 +69,19 @@ function App() {
           />
           <Route path="/adjustmentConfig" element={<AdjustmentConfig />} />
           <Route path="/applicationCodes" element={<ApplicationCodes />} />
-          <Route path="/cashlettergroup" element={<CashLetterGroup/>}/>
-          <Route path="/dupitemsconfig" element={<DupItemsConfig/>}/>
-          <Route path="/eclprofiles" element={<ECLProfiles/>}/>
-          <Route path="/endpoint" element={<Endpoint/>}/>
-          <Route path="/endpointgroups" element={<EndpointGroups/>}/>
-          <Route path="/virtualmaster" element={<VirtualMaster/>}/>
-          <Route path="/worktypes" element={<WorkTypes/>}/>
+          <Route path="/cashlettergroup" element={<CashLetterGroup />} />
+          <Route path="/dupitemsconfig" element={<DupItemsConfig />} />
+          <Route path="/eclprofiles" element={<ECLProfiles />} />
+          <Route path="/endpoint" element={<Endpoint />} />
+          <Route path="/endpointgroups" element={<EndpointGroups />} />
+          <Route path="/virtualmaster" element={<VirtualMaster />} />
+          <Route path="/worktypes" element={<WorkTypes />} />
+          <Route path="/eclinbox" element={<ECLInbox />} />
+          <Route path="/edeskconfig" element={<EDeskConfiguration />} />
+          <Route path="/imagepaths" element={<ImagePaths />} />
+          <Route path="/printers" element={<Printers />} />
+          <Route path="/site" element={<Site />} />
+          <Route path="/systemparams" element={<SystemParameters />} />
           {/* Add routes for other components */}
         </Routes>
       </BrowserRouter>

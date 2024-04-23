@@ -16,29 +16,28 @@ const WorkTypes = () => {
             <tr>
               <th>Work Type ID</th>
               <th>Description</th>
-              <th>Paid</th>
-              <th>Exception</th>
+              <th>Paid Exception</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>No</td>
+              <td><input type="text" id="description" /></td>
               <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <input type="checkbox" />
+                <select id="paidException">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
               </td>
             </tr>
             <tr>
               <td>2</td>
-              <td>No</td>
+              <td><input type="text" id="description" /></td>
               <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <input type="checkbox" />
+                <select id="paidException">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
               </td>
             </tr>
           </tbody>
