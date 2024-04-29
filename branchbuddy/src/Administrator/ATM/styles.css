@@ -235,3 +235,25 @@ table tbody tr:nth-child(even) {
   font-size: 16px;
   margin-top: 20px;
 }
+
+.container {
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+}
+
+.inline-div {
+  flex: 1; /* To evenly distribute the space among the divs */
+  margin-right: 10px; /* Optional: Adjust the spacing between divs */
+}
+
+.inline-div:last-child {
+  margin-right: 0; /* Remove margin-right for the last div */
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 5px; /* Adjust spacing between checkbox and label */
+}

@@ -1,10 +1,38 @@
 import React, { useState } from "react";
-import TableInput from "./TableInput";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-function ConsolidationSchedules() {
+const ConsolidationSchedules = ({ initialData }) => {
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [data, setData] = useState(initialData || []);
+
+  const handleAddRow = () => {
+    const newData = [
+      ...data,
+      { branch: "", branchSorterIDStyle: "", sorterSerialNumber: "", startingSeqNum: "", incrementSeqNum: "" },
+    ];
+    setData(newData);
+  };
+
+  const handleCheckbox = (index) => {
+    const selectedIndex = selectedRows.indexOf(index);
+    if (selectedIndex === -1) {
+      setSelectedRows([...selectedRows, index]);
+    } else {
+      setSelectedRows(selectedRows.filter((rowIndex) => rowIndex !== index));
+    }
+  };
+
+  const handleDeleteRows = () => {
+    const newData = [...data];
+    selectedRows
+      .sort((a, b) => b - a)
+      .forEach((index) => {
+        newData.splice(index, 1);
+      });
+    setData(newData);
+    setSelectedRows([]);
+  };
   const navigate = useNavigate();
   const handleCancel = () => {
     navigate(-1); // Navigate back to previous page
@@ -100,20 +128,57 @@ function ConsolidationSchedules() {
           <p>Selected Day: {selectedDay}</p>
         </div>
 
-        <div className="branch-form-group">
-          <TableInput headers={["Hour: Minute", "Action"]} />
-        </div>
+        <div style={{ width: "100%", marginBottom: "20px" }}>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Hour:Minute</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((setting, index) => (
+                  <tr key={index}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedRows.includes(index)}
+                        onChange={() => handleCheckbox(index)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={setting.branch}
+                        onChange={(e) => {
+                          const newData = [...data];
+                          newData[index].branch = e.target.value;
+                          setData(newData);
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={setting.branchSorterIDStyle}
+                        onChange={(e) => {
+                          const newData = [...data];
+                          newData[index].branchSorterIDStyle = e.target.value;
+                          setData(newData);
+                        }}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
         <div className="button-row">
-          <Link to="/addBlockRangeDefinition">
-            <button className="addButton">Add</button>
-          </Link>
-          <Link to="/saveBlockRangeDefinition">
+            <button className="addButton" onClick={handleAddRow}>Add</button>
             <button className="addButton">Save</button>
-          </Link>
-          <Link to="/deleteBlockRangeDefinition">
-            <button className="cancel-button">Delete</button>
-          </Link>
+            <button className="cancel-button" onClick={handleDeleteRows}>Delete</button>
           <button className="cancel-button" onClick={handleCancel}>
             Cancel
           </button>

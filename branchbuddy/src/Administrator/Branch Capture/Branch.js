@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Select from "react-select";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import TableInput from "./TableInput";
 
 // Dummy data for institutions, branches, and ATMs
 const institutions = [
@@ -32,7 +30,7 @@ const branchIDs = [
   { value: "branchID3", label: "3" },
 ];
 
-function Branch() {
+const Branch = ({ initialData }) => {
   const navigate = useNavigate();
   const handleCancel = () => {
     navigate(-1); // Navigate back to previous page
@@ -47,6 +45,8 @@ function Branch() {
   const [tellerEnabled, setTellerEnabled] = useState(false);
   const [bicEnabled, setBicEnabled] = useState(false);
   const [ATMECLProfiles, setATMECLProfiles] = useState(null);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [data, setData] = useState(initialData || []);
 
   const handleInstitutionChange = (selectedOption) => {
     setSelectedInstitution(selectedOption);
@@ -76,6 +76,29 @@ function Branch() {
 
   const handleATMECLProfileChange = (selectedOption) => {
     setATMECLProfiles(selectedOption);
+  };
+
+   const handleAddRow = () => {
+    const newData = [...data, { contactName: "", phone1: "", phone2: "", fax: "", email: "" }];
+    setData(newData);
+  };
+
+  const handleCheckbox = (index) => {
+    const selectedIndex = selectedRows.indexOf(index);
+    if (selectedIndex === -1) {
+      setSelectedRows([...selectedRows, index]);
+    } else {
+      setSelectedRows(selectedRows.filter((rowIndex) => rowIndex !== index));
+    }
+  };
+
+  const handleDeleteRows = () => {
+    const newData = [...data];
+    selectedRows.sort((a, b) => b - a).forEach((index) => {
+      newData.splice(index, 1);
+    });
+    setData(newData);
+    setSelectedRows([]);
   };
 
   const siteOptions = selectedInstitution ? sites : [];
@@ -211,10 +234,87 @@ function Branch() {
           <input type="text" id="emailEOD" />
         </div>
 
-        <div>
-          <TableInput
-            headers={["Contact Name", "Phone1", "Phone2", "Fax", "Email"]}
-          />
+        <div style={{width:"100%", marginBottom: "20px"}}>
+          <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Contact Name</th>
+              <th>Phone1</th>
+              <th>Phone2</th>
+              <th>Fax</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((setting, index) => (
+              <tr key={index}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(index)}
+                    onChange={() => handleCheckbox(index)}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={setting.contactName}
+                    onChange={(e) => {
+                      const newData = [...data];
+                      newData[index].contactName = e.target.value;
+                      setData(newData);
+                    }}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={setting.phone1}
+                    onChange={(e) => {
+                      const newData = [...data];
+                      newData[index].phone1 = e.target.value;
+                      setData(newData);
+                    }}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={setting.phone2}
+                    onChange={(e) => {
+                      const newData = [...data];
+                      newData[index].phone2 = e.target.value;
+                      setData(newData);
+                    }}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={setting.fax}
+                    onChange={(e) => {
+                      const newData = [...data];
+                      newData[index].fax = e.target.value;
+                      setData(newData);
+                    }}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={setting.email}
+                    onChange={(e) => {
+                      const newData = [...data];
+                      newData[index].email = e.target.value;
+                      setData(newData);
+                    }}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         </div>
 
         <div className="select-container">
@@ -239,15 +339,9 @@ function Branch() {
         <br />
 
         <div className="button-row">
-          <Link to="/addBlockRangeDefinition">
-            <button className="addButton">Add</button>
-          </Link>
-          <Link to="/saveBlockRangeDefinition">
+            <button className="addButton" onClick={handleAddRow}>Add</button>
             <button className="addButton">Save</button>
-          </Link>
-          <Link to="/deleteBlockRangeDefinition">
-            <button className="cancel-button">Delete</button>
-          </Link>
+            <button className="cancel-button" onClick={handleDeleteRows}>Delete</button>
           <button className="cancel-button" onClick={handleCancel}>
             Cancel
           </button>

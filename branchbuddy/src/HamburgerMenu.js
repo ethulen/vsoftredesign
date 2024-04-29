@@ -72,7 +72,6 @@ function HamburgerMenu() {
             <Link to="/restrictrole">Restrict Acct - Role</Link>
             <Link to="/roleprivilege">Role Privilege</Link>
             <Link to="/institutions">Institutions</Link>
-            <Link to="/intitutiongroup">Institution Group</Link>
             <Link to="/roles">Roles</Link>
           </div>
           <a href="#" onClick={handleMenuClick}>

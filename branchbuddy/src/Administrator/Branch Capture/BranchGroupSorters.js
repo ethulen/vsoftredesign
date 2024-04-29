@@ -1,14 +1,42 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import TableInput from "./TableInput";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-function BranchGroupsSorters() {
+const BranchGroupsSorters = ({ initialData }) => {
   const [selectedInstitution, setSelectedInstitution] = useState(null);
   const [selectedSite, setSelectedSite] = useState(null);
   const [group, setGroup] = useState(null);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [data, setData] = useState(initialData || []);
+
+  const handleAddRow = () => {
+    const newData = [
+      ...data,
+      { branch: "", branchSorterIDStyle: "", sorterSerialNumber: "", startingSeqNum: "", incrementSeqNum: "" },
+    ];
+    setData(newData);
+  };
+
+  const handleCheckbox = (index) => {
+    const selectedIndex = selectedRows.indexOf(index);
+    if (selectedIndex === -1) {
+      setSelectedRows([...selectedRows, index]);
+    } else {
+      setSelectedRows(selectedRows.filter((rowIndex) => rowIndex !== index));
+    }
+  };
+
+  const handleDeleteRows = () => {
+    const newData = [...data];
+    selectedRows
+      .sort((a, b) => b - a)
+      .forEach((index) => {
+        newData.splice(index, 1);
+      });
+    setData(newData);
+    setSelectedRows([]);
+  };
 
   const navigate = useNavigate();
   const handleCancel = () => {
@@ -76,27 +104,94 @@ function BranchGroupsSorters() {
         </div>
 
         <div>
-          <TableInput
-            headers={[
-              "Branch",
-              "Branch Sorter ID Style",
-              "Sorter Serial Number",
-              "Starting Seq Num",
-              "Increment Seq Num",
-            ]}
-          />
+          <div style={{ width: "100%", marginBottom: "20px" }}>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Branch</th>
+                  <th>Branch Sorter ID Style</th>
+                  <th>Sorter Serial Number</th>
+                  <th>Starting Seq Num</th>
+                  <th>Increment Seq Num</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((setting, index) => (
+                  <tr key={index}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedRows.includes(index)}
+                        onChange={() => handleCheckbox(index)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={setting.branch}
+                        onChange={(e) => {
+                          const newData = [...data];
+                          newData[index].branch = e.target.value;
+                          setData(newData);
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={setting.branchSorterIDStyle}
+                        onChange={(e) => {
+                          const newData = [...data];
+                          newData[index].branchSorterIDStyle = e.target.value;
+                          setData(newData);
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={setting.sorterSerialNumber}
+                        onChange={(e) => {
+                          const newData = [...data];
+                          newData[index].sorterSerialNumber = e.target.value;
+                          setData(newData);
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={setting.startingSeqNum}
+                        onChange={(e) => {
+                          const newData = [...data];
+                          newData[index].startingSeqNum = e.target.value;
+                          setData(newData);
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={setting.incrementSeqNum}
+                        onChange={(e) => {
+                          const newData = [...data];
+                          newData[index].incrementSeqNum = e.target.value;
+                          setData(newData);
+                        }}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div className="button-row">
-          <Link to="/addBlockRangeDefinition">
-            <button className="addButton">Add</button>
-          </Link>
-          <Link to="/saveBlockRangeDefinition">
+            <button className="addButton" onClick={handleAddRow}>Add</button>
             <button className="addButton">Save</button>
-          </Link>
-          <Link to="/deleteBlockRangeDefinition">
-            <button className="cancel-button">Delete</button>
-          </Link>
+            <button className="cancel-button" onClick={handleDeleteRows}>Delete</button>
           <button className="cancel-button" onClick={handleCancel}>
             Cancel
           </button>
@@ -104,6 +199,6 @@ function BranchGroupsSorters() {
       </div>
     </div>
   );
-}
+};
 
 export default BranchGroupsSorters;

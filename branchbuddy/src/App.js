@@ -32,6 +32,13 @@ import ImagePaths from "./Administrator/Configuration/ImagePaths.js";
 import Printers from "./Administrator/Configuration/Printers.js";
 import Site from "./Administrator/Configuration/Site.js";
 import SystemParameters from "./Administrator/Configuration/SystemParameters.js";
+import Institutions from "./Administrator/Security/Institutions.js";
+import ResetUserSettings from "./Administrator/Security/ResetUserSettings.js";
+import RestrictAcctRole from "./Administrator/Security/RestrictAcctRole.js";
+import RestrictAcctUser from "./Administrator/Security/RestrictAcctUser.js";
+import RolePrivilege from "./Administrator/Security/RolePrivilege.js";
+import Roles from "./Administrator/Security/Roles.js";
+import Users from "./Administrator/Security/Users.js";
 
 function App() {
   return (
@@ -82,6 +89,13 @@ function App() {
           <Route path="/printers" element={<Printers />} />
           <Route path="/site" element={<Site />} />
           <Route path="/systemparams" element={<SystemParameters />} />
+          <Route path="/institutions" element={<Institutions />} />
+          <Route path="/resetusersettings" element={<ResetUserSettings />} />
+          <Route path="/restrictrole" element={<RestrictAcctRole />} />
+          <Route path="/restrictUser" element={<RestrictAcctUser />} />
+          <Route path="/roleprivilege" element={<RolePrivilege />} />
+          <Route path="/roles" element={<Roles />} />
+          <Route path="/users" element={<Users />} />
           {/* Add routes for other components */}
         </Routes>
       </BrowserRouter>
