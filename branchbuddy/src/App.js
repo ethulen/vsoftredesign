@@ -39,6 +39,12 @@ import RestrictAcctUser from "./Administrator/Security/RestrictAcctUser.js";
 import RolePrivilege from "./Administrator/Security/RolePrivilege.js";
 import Roles from "./Administrator/Security/Roles.js";
 import Users from "./Administrator/Security/Users.js";
+import SortPattern from "./Administrator/Sort Pattern/SortPattern.js";
+import SortPatternKeys from "./Administrator/Sort Pattern/SortPatternKeys.js";
+import SortPatternPockets from "./Administrator/Sort Pattern/SortPatternPockets.js";
+import SortPatternSelectors from "./Administrator/Sort Pattern/SortPatternSelectors.js";
+import SortPatternTables from "./Administrator/Sort Pattern/SortPatternTables.js";
+import MICRConversion from "./Administrator/Sort Pattern/MICRConversion.js";
 
 function App() {
   return (
@@ -96,6 +102,12 @@ function App() {
           <Route path="/roleprivilege" element={<RolePrivilege />} />
           <Route path="/roles" element={<Roles />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/sortpattern" element={<SortPattern />} />
+          <Route path="/sortpatternkeys" element={<SortPatternKeys />} />
+          <Route path="/sortpatternpockets" element={<SortPatternPockets />} />
+          <Route path="/sortpatternselectors" element={<SortPatternSelectors />} />
+          <Route path="/sortpatterntables" element={<SortPatternTables />} />
+          <Route path="/micrconversion" element={<MICRConversion />} />
           {/* Add routes for other components */}
         </Routes>
       </BrowserRouter>
