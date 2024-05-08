@@ -1,11 +1,26 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 const SystemParameters = () => {
-  const navigate = useNavigate();
-  const handleCancel = () => {
-    navigate(-1); // Navigate back to previous page
+  const [rows, setRows] = useState([{ parameter: "", value: "" }]);
+
+  const addRow = () => {
+    setRows([...rows, { parameter: "", value: "" }]);
+  };
+
+  const deleteLastRow = () => {
+    setRows(rows.slice(0, -1));
+  };
+
+  const handleParameterChange = (index, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index].parameter = value;
+    setRows(updatedRows);
+  };
+
+  const handleValueChange = (index, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index].value = value;
+    setRows(updatedRows);
   };
   return (
     <div className="container">
@@ -38,31 +53,43 @@ const SystemParameters = () => {
           </select>
         </div>
         <div>
-          <label htmlFor="parametersValue">Parameters Value:</label>
-          <select id="parametersValue">
-            <option value="IMAGE_PATH">Image Path</option>
-            <option value="IMAGE_TYPE_24_URL">Image Type 24 URL</option>
-            <option value="FILTER_SPN_ID_BASED_ON_INST_ID">
-              Indicating if fil
-            </option>
-            <option value="REMOTESERVERURL">Remote Server URL</option>
-            <option value="RESEARCH_ITEMS_PER_PAGE">
-              The number of items on e
-            </option>
-            {/* Add more parameters here */}
-          </select>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameters</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, index) => (
+                <tr key={index}>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.parameter}
+                      onChange={(e) =>
+                        handleParameterChange(index, e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.value}
+                      onChange={(e) => handleValueChange(index, e.target.value)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         <div className="button-row">
-          <Link to="/addBlockRangeDefinition">
-            <button className="addButton">Add</button>
-          </Link>
-          <Link to="/saveBlockRangeDefinition">
-            <button className="addButton">Save</button>
-          </Link>
-          <Link to="/deleteBlockRangeDefinition">
-            <button className="cancel-button">Delete</button>
-          </Link>
-          <button className="cancel-button" onClick={handleCancel}>
+          <button className="addButton" onClick={addRow}>
+            Add
+          </button>
+          <button className="addButton">Save</button>
+          <button className="cancel-button" onClick={deleteLastRow}>
             Cancel
           </button>
         </div>

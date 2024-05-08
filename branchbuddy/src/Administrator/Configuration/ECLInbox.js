@@ -1,13 +1,8 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 const ECLInbox = () => {
-  const navigate = useNavigate();
-  const handleCancel = () => {
-    navigate(-1); // Navigate back to previous page
-  };
-  const data = [
+  const [rows, setRows] = useState([{ parameter: "", value: "" }]);
+  const [data, setData] = useState([
     {
       id: 1,
       inboxName: "Inbox 1",
@@ -38,7 +33,56 @@ const ECLInbox = () => {
       parameters: "Parameter 3",
       sorterId: "Sorter 3",
     },
-  ];
+  ]);
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  const addRow = () => {
+    const newRow = {
+      id: data.length + 1,
+      inboxName: "",
+      fileCategory: "",
+      eclType: "",
+      inboxPath: "",
+      virtualSorterPath: "",
+      parameters: "",
+      sorterId: "",
+    };
+    setData([...data, newRow]);
+  };
+  const deleteLastRow = () => {
+    setRows(rows.slice(0, -1));
+  };
+  const deleteSelectedRows = () => {
+    const updatedData = data.filter((row) => !selectedRows.includes(row.id));
+    setData(updatedData);
+  };
+
+  const handleCheckboxChange = (id) => {
+    const updatedSelectedRows = [...selectedRows];
+    if (updatedSelectedRows.includes(id)) {
+      // Remove the id if it exists in the selectedRows array
+      const index = updatedSelectedRows.indexOf(id);
+      updatedSelectedRows.splice(index, 1);
+    } else {
+      // Add the id if it doesn't exist in the selectedRows array
+      updatedSelectedRows.push(id);
+    }
+    setSelectedRows(updatedSelectedRows);
+  };
+
+  const handleInputChange = (id, field, value) => {
+    const updatedData = data.map((row) => {
+      if (row.id === id) {
+        return {
+          ...row,
+          [field]: value,
+        };
+      }
+      return row;
+    });
+    setData(updatedData);
+  };
+
   return (
     <div className="container">
       <div className="form-container">
@@ -84,6 +128,7 @@ const ECLInbox = () => {
           <table>
             <thead>
               <tr>
+                <th />
                 <th>ID</th>
                 <th>Inbox Name</th>
                 <th>File Category</th>
@@ -97,14 +142,77 @@ const ECLInbox = () => {
             <tbody>
               {data.map((row) => (
                 <tr key={row.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.includes(row.id)}
+                      onChange={() => handleCheckboxChange(row.id)}
+                    />
+                  </td>
                   <td>{row.id}</td>
-                  <td>{row.inboxName}</td>
-                  <td>{row.fileCategory}</td>
-                  <td>{row.eclType}</td>
-                  <td>{row.inboxPath}</td>
-                  <td>{row.virtualSorterPath}</td>
-                  <td>{row.parameters}</td>
-                  <td>{row.sorterId}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.inboxName}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "inboxName", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.fileCategory}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "fileCategory", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.eclType}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "eclType", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.inboxPath}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "inboxPath", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.virtualSorterPath}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "virtualSorterPath", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.parameters}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "parameters", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.sorterId}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "sorterId", e.target.value)
+                      }
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -112,16 +220,12 @@ const ECLInbox = () => {
         </div>
         <div>
           <div className="button-row">
-            <Link to="/addBlockRangeDefinition">
-              <button className="addButton">Add</button>
-            </Link>
-            <Link to="/saveBlockRangeDefinition">
-              <button className="addButton">Save</button>
-            </Link>
-            <Link to="/deleteBlockRangeDefinition">
-              <button className="cancel-button">Delete</button>
-            </Link>
-            <button className="cancel-button" onClick={handleCancel}>
+            <button className="addButton" onClick={addRow}>
+              Add
+            </button>
+            <button className="addButton">Save</button>
+            <button className="cancel-button" onClick={deleteSelectedRows}>Delete</button>
+            <button className="cancel-button" onClick={deleteLastRow}>
               Cancel
             </button>
           </div>

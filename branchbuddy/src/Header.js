@@ -1,5 +1,6 @@
 import "./index.css";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -8,12 +9,8 @@ function Header() {
         BranchBuddy
       </a>
       <div className="header-right">
-        <a href="#home">
-          Home
-        </a>
-        <a href="#home">
-          Login
-        </a>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
       </div>
     </div>
   );

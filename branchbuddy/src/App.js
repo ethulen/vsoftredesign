@@ -45,6 +45,7 @@ import SortPatternPockets from "./Administrator/Sort Pattern/SortPatternPockets.
 import SortPatternSelectors from "./Administrator/Sort Pattern/SortPatternSelectors.js";
 import SortPatternTables from "./Administrator/Sort Pattern/SortPatternTables.js";
 import MICRConversion from "./Administrator/Sort Pattern/MICRConversion.js";
+import HomePage from "./HomePage.js";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
         <Header />
         <HamburgerMenu />
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/definition" element={<Definition />} />
           <Route path="/reviewthreshold" element={<ReviewThreshold />} />
           <Route path="/atmvirtualdocs" element={<ATMVirtualDocs />} />
@@ -105,7 +107,10 @@ function App() {
           <Route path="/sortpattern" element={<SortPattern />} />
           <Route path="/sortpatternkeys" element={<SortPatternKeys />} />
           <Route path="/sortpatternpockets" element={<SortPatternPockets />} />
-          <Route path="/sortpatternselectors" element={<SortPatternSelectors />} />
+          <Route
+            path="/sortpatternselectors"
+            element={<SortPatternSelectors />}
+          />
           <Route path="/sortpatterntables" element={<SortPatternTables />} />
           <Route path="/micrconversion" element={<MICRConversion />} />
           {/* Add routes for other components */}

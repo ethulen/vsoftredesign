@@ -1,12 +1,49 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const ImagePaths = () => {
-  const navigate = useNavigate();
   const handleCancel = () => {
-    navigate(-1); // Navigate back to previous page
+    // Get reference to the table
+    const table = document.getElementById('imagePaths');
+  
+    // Check if the table has any rows
+    if (table.rows.length > 0) {
+      // Delete the last row
+      table.deleteRow(table.rows.length - 1);
+    } else {
+      console.log('Table is empty!');
+    }
   };
+
+  const handleDelete = () => {
+    // Get reference to the table
+    const table = document.getElementById('imagePaths');
+  
+    // Get reference to the selected row
+    const selectedRow = table.querySelector('tr.selected');
+  
+    // Check if a row is selected
+    if (selectedRow) {
+      // Delete the selected row
+      selectedRow.remove();
+    } else {
+      console.log('No row selected!');
+    }
+  };
+
+  const handleAdd = () => {
+    // Assuming rows is a state variable containing the current rows
+    // Create a new row object with default values
+    const newRow = {
+      id: rows.length + 1, // Generate a unique ID for the new row
+      checked: false,
+      imageType: 'Type A',
+      path: ''
+    };
+  
+    // Update the state to add the new row
+    setRows([...rows, newRow]);
+  };
+  
 
   const [rows, setRows] = useState([
     { id: 1, imageType: "Type A", path: "", checked: false },
@@ -48,7 +85,7 @@ const ImagePaths = () => {
         <h1 style={{ width: "100%" }}>eDesk Configuration</h1>
         <div>
           <h1>Paths</h1>
-          <table>
+          <table id="imagePaths">
             <thead>
               <tr>
                 <th>Checkbox</th>
@@ -87,7 +124,9 @@ const ImagePaths = () => {
                     <input
                       type="file"
                       id={`path${row.id}`}
-                      onChange={(e) => handleFileChange(row.id, e.target.files[0])}
+                      onChange={(e) =>
+                        handleFileChange(row.id, e.target.files[0])
+                      }
                     />
                   </td>
                 </tr>
@@ -96,15 +135,9 @@ const ImagePaths = () => {
           </table>
         </div>
         <div className="button-row">
-          <Link to="/addBlockRangeDefinition">
-            <button className="addButton">Add</button>
-          </Link>
-          <Link to="/saveBlockRangeDefinition">
-            <button className="addButton">Save</button>
-          </Link>
-          <Link to="/deleteBlockRangeDefinition">
-            <button className="cancel-button">Delete</button>
-          </Link>
+          <button className="addButton" onClick={handleAdd}>Add</button>
+          <button className="addButton">Save</button>
+          <button className="cancel-button" onClick={handleDelete}>Delete</button>
           <button className="cancel-button" onClick={handleCancel}>
             Cancel
           </button>
