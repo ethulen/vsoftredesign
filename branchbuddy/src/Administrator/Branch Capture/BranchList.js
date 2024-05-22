@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import "./styles.css";
-import { useNavigate } from "react-router-dom";
 
 const BranchList = ({ initialData }) => {
   const [selectedSite, setSelectedSite] = useState(null);
   const [selectedInstitution, setSelectedInstitution] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
   const [data, setData] = useState(initialData || []);
+  const [rows, setRows] = useState([{ branchID: "", branchName: "", city: "", state: "", serial: "" }]);
 
   const handleAddRow = () => {
     const newData = [...data, { branchID: "", branchName: "", city: "", state: "", serial: "" }];
@@ -32,11 +32,6 @@ const BranchList = ({ initialData }) => {
     setSelectedRows([]);
   };
 
-  const navigate = useNavigate();
-  const handleCancel = () => {
-    navigate(-1); // Navigate back to previous page
-  };
-
   const handleInstitutionChange = (selectedOption) => {
     setSelectedInstitution(selectedOption);
     setSelectedSite(null);
@@ -46,7 +41,15 @@ const BranchList = ({ initialData }) => {
     setSelectedSite(selectedOption);
   };
 
-  const institutions = ["Institution 1", "Institution 2", "Institution 3"];
+  const deleteLastRow = () => {
+    setRows(rows.slice(0, -1));
+  };
+
+  const institutions = [
+    { value: "Institution 1", label: "Institution 1" },
+    { value: "Institution 2", label: "Institution 2" },
+    { value: "Institution 3", label: "Institution 3" },
+  ];
 
   const sites = [
     { value: "site1", label: "Site 1" },
@@ -160,7 +163,7 @@ const BranchList = ({ initialData }) => {
             <button className="addButton" onClick={handleAddRow}>Add</button>
             <button className="addButton">Save</button>
             <button className="cancel-button" onClick={handleDeleteRows}>Delete</button>
-          <button className="cancel-button" onClick={handleCancel}>
+          <button className="cancel-button" onClick={deleteLastRow}>
             Cancel
           </button>
         </div>

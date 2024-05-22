@@ -27,73 +27,88 @@ function NewReviewThreshold(props) {
   const { location } = props;
   const { state } = location || {};
   const { institution } = state || {};
-  
+
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="institution">Institution:</label>
-          <input
-            type="text"
-            id="institution"
-            value={institution || ""} // Use default value if undefined
-            readOnly
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Description:</label>
-          <input
-            type="text"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="accountNumber">Number of checks equals or exceeds:</label>
-          <input
-            type="text"
-            id="accountNumber"
-            value={checkNumber}
-            onChange={(e) => setCheckNumber(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="transactionNumber">Transaction amount equals or exceeds:</label>
-          <input
-            type="text"
-            id="transactionNumber"
-            value={transactionNumber}
-            onChange={(e) => setTransactionNumber(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="checkAmount">Any check amount equals or exceeds:</label>
-          <input
-            type="text"
-            id="checkAmount"
-            value={checkAmount}
-            onChange={(e) => setCheckAmount(e.target.value)}
-          />
-        </div>
-        <label>
-          CAR amount differs from Check amount
-          <input
-            type="checkbox"
-            checked={carDiffAmount}
-            onChange={(e) => setCarDiffAmount(e.target.checked)}
-          />
-        </label>
-        <div className="button-container">
-          <button className="save-button">Save</button>
-          <button className="cancel-button" onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
-      </form>
+    <div className="container">
+      <div className="form-container">
+        <h1 className="title-header">Review Threshold</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="container">
+            <div className="inline-div">
+              <label htmlFor="institution">Institution:</label>
+              <input
+                type="text"
+                id="institution"
+                value={institution || ""} // Use default value if undefined
+                readOnly
+              />
+            </div>
+            <div className="inline-div">
+              <label htmlFor="description">Description:</label>
+              <input
+                type="text"
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </div>
+            <div className="inline-div">
+              <label htmlFor="accountNumber">
+                Number of checks equals or exceeds:
+              </label>
+              <input
+                type="text"
+                id="accountNumber"
+                value={checkNumber}
+                onChange={(e) => setCheckNumber(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+          <div className="container">
+            <div className="inline-div">
+              <label htmlFor="transactionNumber">
+                Transaction amount equals or exceeds:
+              </label>
+              <input
+                type="text"
+                id="transactionNumber"
+                value={transactionNumber}
+                onChange={(e) => setTransactionNumber(e.target.value)}
+                required
+              />
+            </div>
+            <div className="inline-div">
+              <label htmlFor="checkAmount">
+                Any check amount equals or exceeds:
+              </label>
+              <input
+                type="text"
+                id="checkAmount"
+                value={checkAmount}
+                onChange={(e) => setCheckAmount(e.target.value)}
+              />
+            </div>
+            <div className="inline-div">
+              <label>
+                CAR amount differs from Check amount: 
+                <input
+                  type="checkbox"
+                  checked={carDiffAmount}
+                  onChange={(e) => setCarDiffAmount(e.target.checked)}
+                />
+              </label>
+            </div>
+          </div>
+          <div className="button-row">
+            <button className="save-button">Save</button>
+            <button className="cancel-button" onClick={handleCancel}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

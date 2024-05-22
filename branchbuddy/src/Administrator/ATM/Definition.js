@@ -118,74 +118,79 @@ function Definition() {
   const atmOptions = selectedBranch ? atmsData[selectedBranch.value] : [];
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>ATM Definition</h1>
-      <div className="select-container">
-        <Select
-          value={selectedInstitution}
-          onChange={handleInstitutionChange}
-          options={institutions}
-          placeholder="Select an institution"
-        />
-        <Select
-          value={selectedBranch}
-          onChange={handleBranchChange}
-          options={branchOptions}
-          placeholder="Select a branch"
-        />
-        <Select
-          value={selectedATM}
-          onChange={handleATMChange}
-          options={atmOptions}
-          placeholder="Select an ATM"
-          getOptionLabel={(option) => (option ? option.atmName : "")} // Display ATM name
-        />
-        <Select
-          value={{ value: recordsPerPage, label: `${recordsPerPage} per page` }}
-          onChange={handleRecordsPerPageChange}
-          options={[
-            { value: 10, label: "10 per page" },
-            { value: 20, label: "20 per page" },
-            { value: 50, label: "50 per page" },
-            { value: 80, label: "80 per page" },
-            { value: 100, label: "100 per page" },
-          ]}
-          placeholder="Records per page"
-        />
-      </div>
+    <div className="container">
+      <div className="form-container">
+        <h1 className="title-header">ATM Definition</h1>
+        <div className="select-container">
+          <Select
+            value={selectedInstitution}
+            onChange={handleInstitutionChange}
+            options={institutions}
+            placeholder="Select an institution"
+          />
+          <Select
+            value={selectedBranch}
+            onChange={handleBranchChange}
+            options={branchOptions}
+            placeholder="Select a branch"
+          />
+          <Select
+            value={selectedATM}
+            onChange={handleATMChange}
+            options={atmOptions}
+            placeholder="Select an ATM"
+            getOptionLabel={(option) => (option ? option.atmName : "")} // Display ATM name
+          />
+          <Select
+            value={{
+              value: recordsPerPage,
+              label: `${recordsPerPage} per page`,
+            }}
+            onChange={handleRecordsPerPageChange}
+            options={[
+              { value: 10, label: "10 per page" },
+              { value: 20, label: "20 per page" },
+              { value: 50, label: "50 per page" },
+              { value: 80, label: "80 per page" },
+              { value: 100, label: "100 per page" },
+            ]}
+            placeholder="Records per page"
+          />
+        </div>
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Branch</th>
-            <th>ATM Name</th>
-            <th>Vendor</th>
-            <th>Source Institution</th>
-            <th>Source Branch</th>
-            <th>Source ATM</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {selectedATM && (
+        <table className="table">
+          <thead>
             <tr>
-              <td>{selectedBranch.label}</td>
-              <td>{selectedATM.atmName}</td>
-              <td>{selectedATM.vendor}</td>
-              <td>{selectedATM.sourceInstitution}</td>
-              <td>{selectedATM.sourceBranch}</td>
-              <td>{selectedATM.sourceATM}</td>
-              <td>{selectedATM.startTime}</td>
-              <td>{selectedATM.endTime}</td>
+              <th>Branch</th>
+              <th>ATM Name</th>
+              <th>Vendor</th>
+              <th>Source Institution</th>
+              <th>Source Branch</th>
+              <th>Source ATM</th>
+              <th>Start Time</th>
+              <th>End Time</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {selectedATM && (
+              <tr>
+                <td>{selectedBranch.label}</td>
+                <td>{selectedATM.atmName}</td>
+                <td>{selectedATM.vendor}</td>
+                <td>{selectedATM.sourceInstitution}</td>
+                <td>{selectedATM.sourceBranch}</td>
+                <td>{selectedATM.sourceATM}</td>
+                <td>{selectedATM.startTime}</td>
+                <td>{selectedATM.endTime}</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
 
-      <Link to="/addATM">
-        <button className="addButton">Add ATM</button>
-      </Link>
+        <Link to="/addATM">
+          <button className="addButton">Add ATM</button>
+        </Link>
+      </div>
     </div>
   );
 }

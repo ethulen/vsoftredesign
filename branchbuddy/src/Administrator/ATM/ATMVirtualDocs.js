@@ -10,11 +10,15 @@ function ATMVirtualDocs() {
   const [isFormValid, setIsFormValid] = useState(false); // State to track form validity
 
   // Sample data for dropdown options
-  const institutions = ["Institution 1", "Institution 2", "Institution 3"];
+  const institutions = [
+    { value: "Institution 1", label: "Institution 1" },
+    { value: "Institution 2", label: "Institution 2" },
+    { value: "Institution 3", label: "Institution 3" },
+  ];
   const groupsBranches = {
     "Institution 1": ["Group/Branch 1A", "Group/Branch 1B", "Group/Branch 1C"],
     "Institution 2": ["Group/Branch 2A", "Group/Branch 2B", "Group/Branch 2C"],
-    "Institution 3": ["Group/Branch 3A", "Group/Branch 3B", "Group/Branch 3C"]
+    "Institution 3": ["Group/Branch 3A", "Group/Branch 3B", "Group/Branch 3C"],
   };
   const ATMs = {
     "Group/Branch 1A": ["ATM 1A1", "ATM 1A2", "ATM 1A3"],
@@ -47,69 +51,108 @@ function ATMVirtualDocs() {
   };
 
   return (
-    <div className="atm-virtual-docs-container">
-      <h2 className="atm-virtual-docs-heading">ATM Virtual Docs</h2>
-      {/* Institution dropdown */}
-      <div>
-        <label className="atm-virtual-docs-label" htmlFor="institutionSelect">Institution: </label>
-        <select
-          className="atm-virtual-docs-select"
-          id="institutionSelect"
-          value={selectedInstitution}
-          onChange={handleInstitutionSelect}
+    <div className="container">
+      <div className="form-container">
+        <h1 className="title-header">Review Threshold</h1>
+        {/* Display message if form is invalid */}
+        {!isFormValid && (
+          <p className="atm-virtual-docs-error">Please select all dropdowns.</p>
+        )}
+
+        {/* Institution dropdown */}
+        <div className="container">
+          <div className="inline-div">
+            <label
+              className="atm-virtual-docs-label"
+              htmlFor="institutionSelect"
+            >
+              Institution:{" "}
+            </label>
+            <select
+              className="atm-virtual-docs-select"
+              id="institutionSelect"
+              value={selectedInstitution}
+              onChange={handleInstitutionSelect}
+            >
+              <option value="">Select an institution</option>
+              {institutions.map((institution, index) => (
+                <option
+                  key={index}
+                  className="atm-virtual-docs-option"
+                  value={institution.value}
+                >
+                  {institution.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Group/Branch dropdown */}
+          <div className="inline-div">
+            <label
+              className="atm-virtual-docs-label"
+              htmlFor="groupBranchSelect"
+            >
+              Group/Branch:{" "}
+            </label>
+            <select
+              className="atm-virtual-docs-select"
+              id="groupBranchSelect"
+              value={selectedGroupBranch}
+              onChange={handleGroupBranchSelect}
+              disabled={!selectedInstitution} // Disable if institution is not selected
+            >
+              <option value="">Select a group/branch</option>
+              {groupsBranches[selectedInstitution] &&
+                groupsBranches[selectedInstitution].map(
+                  (groupBranch, index) => (
+                    <option
+                      key={index}
+                      className="atm-virtual-docs-option"
+                      value={groupBranch}
+                    >
+                      {groupBranch}
+                    </option>
+                  )
+                )}
+            </select>
+          </div>
+
+          {/* ATM dropdown */}
+          <div className="inline-div">
+            <label className="atm-virtual-docs-label" htmlFor="ATMSelect">
+              ATM:{" "}
+            </label>
+            <select
+              className="atm-virtual-docs-select"
+              id="ATMSelect"
+              value={selectedATM}
+              onChange={handleATMSelect}
+              disabled={!selectedGroupBranch} // Disable if group/branch is not selected
+            >
+              <option value="">Select an ATM</option>
+              {ATMs[selectedGroupBranch] &&
+                ATMs[selectedGroupBranch].map((ATM, index) => (
+                  <option
+                    key={index}
+                    className="atm-virtual-docs-option"
+                    value={ATM}
+                  >
+                    {ATM}
+                  </option>
+                ))}
+            </select>
+          </div>
+        </div>
+        <Link
+          to={{
+            pathname: "/addvirtualdocs",
+            state: { selectedInstitution, selectedGroupBranch, selectedATM },
+          }}
         >
-          <option value="">Select an institution</option>
-          {institutions.map((institution, index) => (
-            <option key={index} className="atm-virtual-docs-option" value={institution}>{institution}</option>
-          ))}
-        </select>
+          <button className="addButton">Add Virtual Docs</button>
+        </Link>
       </div>
-
-      {/* Group/Branch dropdown */}
-      <div>
-        <label className="atm-virtual-docs-label" htmlFor="groupBranchSelect">Group/Branch: </label>
-        <select
-          className="atm-virtual-docs-select"
-          id="groupBranchSelect"
-          value={selectedGroupBranch}
-          onChange={handleGroupBranchSelect}
-          disabled={!selectedInstitution} // Disable if institution is not selected
-        >
-          <option value="">Select a group/branch</option>
-          {groupsBranches[selectedInstitution] &&
-            groupsBranches[selectedInstitution].map((groupBranch, index) => (
-              <option key={index} className="atm-virtual-docs-option" value={groupBranch}>{groupBranch}</option>
-            ))}
-        </select>
-      </div>
-
-      {/* ATM dropdown */}
-      <div>
-        <label className="atm-virtual-docs-label" htmlFor="ATMSelect">ATM: </label>
-        <select
-          className="atm-virtual-docs-select"
-          id="ATMSelect"
-          value={selectedATM}
-          onChange={handleATMSelect}
-          disabled={!selectedGroupBranch} // Disable if group/branch is not selected
-        >
-          <option value="">Select an ATM</option>
-          {ATMs[selectedGroupBranch] &&
-            ATMs[selectedGroupBranch].map((ATM, index) => (
-              <option key={index} className="atm-virtual-docs-option" value={ATM}>{ATM}</option>
-            ))}
-        </select>
-      </div>
-
-      {/* Display message if form is invalid */}
-      {!isFormValid && <p className="atm-virtual-docs-error">Please select all dropdowns.</p>}
-
-      <Link
-        to={{
-          pathname: '/addvirtualdocs',
-          state: { selectedInstitution, selectedGroupBranch, selectedATM }
-        }}
-      ><button className="addButton">Add Virtual Docs</button></Link>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import "./App.css";
+import React, { useState } from "react";
 import Header from "./Header.js";
 import HamburgerMenu from "./HamburgerMenu.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -48,6 +49,7 @@ import MICRConversion from "./Administrator/Sort Pattern/MICRConversion.js";
 import HomePage from "./HomePage.js";
 
 function App() {
+  const [selectedBank, setSelectedBank] = useState("");
   return (
     <div className="App">
       <BrowserRouter>
@@ -60,7 +62,7 @@ function App() {
           <Route path="/atmvirtualdocs" element={<ATMVirtualDocs />} />
           <Route path="/addATM" element={<NewATMForm />} />
           <Route path="/addVirtualDocs" element={<NewVirtualDocs />} />
-          <Route path="/addReviewThreshold" element={<NewReviewThreshold />} />
+          <Route path="/addReviewThreshold" element={<NewReviewThreshold selectedBank={selectedBank} />} />
           <Route
             path="/blockRangeDefinition"
             element={<BlockRangeDefinition />}
